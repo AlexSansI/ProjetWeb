@@ -14,6 +14,8 @@ if ($_POST && $_POST["mail"] && $_POST["password"] && $_POST["nomUser"]) {
     $newUser = new User($_POST);
     if ($_GET) {
         $newUser->setId($_GET["id"]);
+        $_SESSION["nomUser"] = $_POST["nomUser"];
+        $userController->updateUser($newUser);
     } else {
         $userId = $userController->add($newUser);
         $_SESSION["nomUser"] = $newUser->getNomUser();
